@@ -1,0 +1,30 @@
+{
+        // See https://go.microsoft.com/fwlink/?LinkId=733558
+        // for the documentation about the tasks.json format
+        "version": "2.0.0",
+        "tasks": [
+                {
+                        "label": "build",
+                        "type": "shell",
+                        "command": "kotlinc test.kt -include-runtime -d test.jar",
+                        "problemMatcher": [],
+                        "group": {
+                                "kind": "build",
+                                "isDefault": true
+                        }
+                },
+                {
+                        "label": "protoc",
+                        "type": "shell",
+                        "command": "protoc",
+                        "args": [
+                            "--go_out=${workspaceFolder}/backchannel",
+                            "--go_opt=paths=source_relative",
+                            "--go-grpc_out=${workspaceFolder}/backchannel",
+                            "--go-grpc_opt=paths=source_relative",
+                            "--proto_path=${workspaceFolder}/backchannel",
+                            "${workspaceFolder}/backchannel/backchannel.proto"
+                        ]
+                    }
+        ]
+}
